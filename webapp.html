@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NR Number Bot</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+            color: white;
+        }
+        .container { max-width: 400px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #e94560;
+            margin-bottom: 20px;
+        }
+        .header h1 { font-size: 24px; margin-bottom: 5px; }
+        .header p { color: #a0a0a0; font-size: 14px; }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            border: none;
+            padding: 18px 15px;
+            border-radius: 15px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+        .btn:active { transform: translateY(0); }
+        .btn-green {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+        }
+        .btn-blue {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+        .btn-purple {
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4);
+        }
+        .btn-full { grid-column: 1 / -1; }
+        .emoji { font-size: 20px; margin-right: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 NR NUMBER BOT</h1>
+            <p>Instant OTP Reception</p>
+        </div>
+        <div class="menu-grid">
+            <button class="btn btn-green" onclick="sendData('get_number')">
+                <span class="emoji">📞</span>GET NUMBER
+            </button>
+            <button class="btn btn-blue" onclick="sendData('balance')">
+                <span class="emoji">💰</span>BALANCE
+            </button>
+            <button class="btn btn-green" onclick="sendData('refer')">
+                <span class="emoji">👥</span>REFER & EARN
+            </button>
+            <button class="btn btn-blue" onclick="sendData('support')">
+                <span class="emoji">💬</span>SUPPORT
+            </button>
+            <button class="btn btn-blue" onclick="sendData('leaderboard')">
+                <span class="emoji">🏆</span>LEADERBOARD
+            </button>
+            <button class="btn btn-green" onclick="sendData('method')">
+                <span class="emoji">📊</span>METHOD
+            </button>
+        </div>
+        <button class="btn btn-purple btn-full" onclick="sendData('admin')">
+            <span class="emoji">👑</span>ADMIN PANEL
+        </button>
+    </div>
+    <script>
+        function sendData(action) {
+            if (window.Telegram && window.Telegram.WebApp) {
+                window.Telegram.WebApp.sendData(action);
+                window.Telegram.WebApp.close();
+            } else {
+                alert('Please open this in Telegram WebApp');
+            }
+        }
+        if (window.Telegram && window.Telegram.WebApp) {
+            window.Telegram.WebApp.ready();
+            window.Telegram.WebApp.expand();
+        }
+    </script>
+</body>
+</html>
